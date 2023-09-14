@@ -1,0 +1,11 @@
+image: hashicorp/terraform:latest
+
+pipelines:
+  default:
+    - step:
+        name: Deploy Infrastructure
+        caches:
+          - terraform
+        script:
+          - terraform init
+          - terraform apply -auto-approve
