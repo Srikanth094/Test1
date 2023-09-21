@@ -1,24 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
+        stage ('Checkout') {
             steps {
                 checkout scmGit(branches: [[name: '*/main1']], extensions: [], userRemoteConfigs: [[credentialsId: '2e9080e3-fc5c-4b1a-bfe9-a26d00270880', url: 'https://github.com/Srikanth094/Test1.git']])
             }
         }
         stage('Terraform Init') {
             steps {
-                sh 'terraform init'
-            }
-        }
-        stage('Terraform Apply') {
-            steps {
-                sh 'terraform apply -auto-approve'
-            }
-        }
-        stage('Terraform Plan (Optional)') {
-            steps {
-                sh 'terraform plan'
+                sh 'terraform init -reconfigure'
             }
         }
     }
